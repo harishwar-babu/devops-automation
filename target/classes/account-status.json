@@ -1,0 +1,14 @@
+[
+  {
+    "currentAccountStatusCode": "200",
+    "currentAccountStatus": "Approval Pending"
+  },
+  {
+    "currentAccountStatusCode": "201",
+    "currentAccountStatus": "Active"
+  },
+  {
+    "currentAccountStatusCode": "202",
+    "currentAccountStatus": "Deactivated"
+  }
+]
