@@ -1,0 +1,10 @@
+[
+  {
+    "transactionTypeCode": "100",
+    "transactionType": "Deposit"
+  },
+  {
+    "transactionTypeCode": "101",
+    "transactionType": "Withdraw"
+  }
+]
