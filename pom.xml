@@ -84,6 +84,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>online-banking</finalName>
 	</build>
 
 </project>
