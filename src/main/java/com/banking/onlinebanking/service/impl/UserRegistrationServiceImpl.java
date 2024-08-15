@@ -13,12 +13,14 @@ import com.banking.onlinebanking.service.UserRegistrationService;
 import com.banking.onlinebanking.util.AccountStatusUtil;
 import com.banking.onlinebanking.util.ApplicationConstant;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
 @AllArgsConstructor
+@Slf4j
 public class UserRegistrationServiceImpl implements UserRegistrationService {
     private final UserDetailsRepository userDetailsRepository;
     private final UserDetailsConverterForEntity userDetailsConverter;
@@ -31,6 +33,8 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
             throw new RecordAlreadyExistsException(ApplicationConstant.RECORD_ALREADY_EXISTS_MESSAGE);
         }
         UserDetails userDetails = userDetailsConverter.convertToEntity(userDetailsRequest);
+        userDetails.setAccountStatus(accountStatusRepository.getReferenceById(AccountStatusUtil
+                .APPROVAL_PENDING.getCurrentAccountStatusCode()));
         userDetailsRepository.save(userDetails);
         AccountDetails accountDetails = new AccountDetails();
         accountDetails.setCustomerId(userDetails.getCustomerId());
@@ -39,6 +43,8 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
         accountDetailsRepository.save(accountDetails);
         UserDetailsResponseDto userDetailsResponse = userDetailsConverter.convertToDto(userDetails);
         userDetailsResponse.setAccountDetails(accountDetailsConverter.convertToDto(accountDetails));
+        log.info("Account created for the customer : {} and the status of account is : {}",userDetails.getCustomerId(),
+                AccountStatusUtil.APPROVAL_PENDING.name());
         return userDetailsResponse;
     }
 }

@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "d84b00fb-d080-4f2d-8909-cbe560318010",
+		"name": "online-banking-jenkins",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29221207"
+	},
+	"item": [
+		{
+			"name": "user-registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\":\"Acb\",\r\n    \"lastName\":\"ABC\",\r\n    \"email\":\"aBC@gmail.com\",\r\n    \"dateOfBirth\":\"2000-09-01\",\r\n    \"address\":{\r\n        \"address\":\"AV1\",\r\n        \"city\":\"Chennai\",\r\n        \"pinCode\":\"12345\"\r\n    },\r\n    \"phoneNumber\":\"1234567892\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8965/abc/onlineBanking/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8965",
+					"path": [
+						"abc",
+						"onlineBanking",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activate-account-number",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8965/abc/onlineBanking/activate/{{account-number}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8965",
+					"path": [
+						"abc",
+						"onlineBanking",
+						"activate",
+						"{{account-number}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view-all-bank-accounts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8965/abc/onlineBanking/viewBankAccounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8965",
+					"path": [
+						"abc",
+						"onlineBanking",
+						"viewBankAccounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view-account-detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8965/abc/onlineBanking/viewAccountDetail/{{account-number}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8965",
+					"path": [
+						"abc",
+						"onlineBanking",
+						"viewAccountDetail",
+						"{{account-number}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deposit-amount",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountNumber\":\"ABC58867\",\r\n    \"amount\":-1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8965/abc/onlineBanking/transaction/deposit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8965",
+					"path": [
+						"abc",
+						"onlineBanking",
+						"transaction",
+						"deposit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "withdraw-amount",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountNumber\":\"ABC73351\",\r\n    \"amount\":10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8965/abc/onlineBanking/transaction/withdraw",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8965",
+					"path": [
+						"abc",
+						"onlineBanking",
+						"transaction",
+						"withdraw"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deactivate-account-number",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8965/abc/onlineBanking/deactivate/{{account-number}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8965",
+					"path": [
+						"abc",
+						"onlineBanking",
+						"deactivate",
+						"{{account-number}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

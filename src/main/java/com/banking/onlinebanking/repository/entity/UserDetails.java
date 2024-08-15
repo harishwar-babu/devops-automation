@@ -24,8 +24,10 @@ public class UserDetails {
     @JoinColumn(name = "customerId",referencedColumnName = "customerId")
     private AddressDetails address;
     private String phoneNumber;
-    @OneToMany(targetEntity = AccountDetails.class,cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(targetEntity = AccountDetails.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "customerId",referencedColumnName = "customerId")
     private List<AccountDetails> accountDetails;
-
+    @ManyToOne
+    @JoinColumn(name = "accountStatus")
+    private AccountStatus accountStatus;
 }
