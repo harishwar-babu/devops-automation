@@ -1,18 +1,3 @@
-server:
-  port: 8965
-  servlet:
-    context-path: /abc/onlineBanking
 spring:
-  application:
-    name: online-banking
-  datasource:
-    url: jdbc:mysql://localhost:3306/online-banking?allowPublicKeyRetrieval=true&&useSSL=false
-    username: root
-    password: root
-  jpa:
-    show-sql: false
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+  profiles:
+    active: dev

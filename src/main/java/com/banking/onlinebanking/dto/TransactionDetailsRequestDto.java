@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class TransactionDetailsRequestDto {
     @NotBlank(message = "account number required")
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{10}$",message = "enter a valid account number")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8}$",message = "enter a valid account number")
     private String accountNumber;
-    @Min(value = 1, message = "deposit amount should be greater than 1")
+    @Min(value = 1, message = "transaction amount should be greater than 1")
     private Double amount;
 }

@@ -1,0 +1,636 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8965/abc/onlineBanking",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "account-details",
+      "description": "Account Detail Functionality"
+    },
+    {
+      "name": "Transaction-details",
+      "description": "Transaction Functionality"
+    },
+    {
+      "name": "User-registration",
+      "description": "User registration for making transactions"
+    }
+  ],
+  "paths": {
+    "/deactivate/{accountNumber}": {
+      "put": {
+        "tags": [
+          "account-details"
+        ],
+        "summary": "Deactivate account number",
+        "operationId": "deactivateAccount",
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Account number does not exists",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseString"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Path variable missing exception",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseString"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Account deactivated",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/activate/{accountNumber}": {
+      "put": {
+        "tags": [
+          "account-details"
+        ],
+        "summary": "Activate account number",
+        "operationId": "activateAccount",
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Account number does not exists",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseString"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Path variable missing exception",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseString"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Account activated",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transaction/withdraw": {
+      "post": {
+        "tags": [
+          "Transaction-details"
+        ],
+        "summary": "Withdraw transaction",
+        "operationId": "makeWithDrawTransaction",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionDetailsRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Account not activated",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseTransactionDetailsResponseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Account number does not exists",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseTransactionDetailsResponseDto"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Withdraw made",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseTransactionDetailsResponseDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Bank balance less than withdraw amount",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseTransactionDetailsResponseDto"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Validation errors",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseTransactionDetailsResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transaction/deposit": {
+      "post": {
+        "tags": [
+          "Transaction-details"
+        ],
+        "summary": "Deposit transaction",
+        "operationId": "makeDepositTransaction",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionDetailsRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Account not activated",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseTransactionDetailsResponseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Account number does not exists",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseTransactionDetailsResponseDto"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Deposit made",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseTransactionDetailsResponseDto"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Validation errors",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseTransactionDetailsResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": [
+          "User-registration"
+        ],
+        "summary": "User registration",
+        "operationId": "register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDetailsRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "Record already exists",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseUserDetailsResponseDto"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "user record created and awaiting for approval",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseUserDetailsResponseDto"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Validation errors",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseUserDetailsResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/viewBankAccounts": {
+      "get": {
+        "tags": [
+          "account-details"
+        ],
+        "summary": "View all bank accounts",
+        "operationId": "viewBankAccounts",
+        "responses": {
+          "200": {
+            "description": "List of bank accounts",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListAccountDetailsResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/viewAccountDetail/{accountNumber}": {
+      "get": {
+        "tags": [
+          "account-details"
+        ],
+        "summary": "View account detail",
+        "operationId": "viewAccountDetail",
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Account number does not exists",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseAccountDetailsResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Path variable missing exception",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseAccountDetailsResponseDto"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Account details",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseAccountDetailsResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApiResponseString": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          },
+          "errors": {
+            "$ref": "#/components/schemas/ErrorDetails"
+          }
+        }
+      },
+      "ErrorDetails": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        }
+      },
+      "TransactionDetailsRequestDto": {
+        "required": [
+          "accountNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "accountNumber": {
+            "pattern": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8}$",
+            "type": "string"
+          },
+          "amount": {
+            "minimum": 1,
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "ApiResponseTransactionDetailsResponseDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/TransactionDetailsResponseDto"
+          },
+          "errors": {
+            "$ref": "#/components/schemas/ErrorDetails"
+          }
+        }
+      },
+      "TransactionDetailsResponseDto": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "transactionDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "accountNumber": {
+            "type": "string"
+          },
+          "transactionType": {
+            "type": "string"
+          },
+          "depositAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "withdrawAmount": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "AddressDetailsRequestDto": {
+        "required": [
+          "address",
+          "city",
+          "pinCode"
+        ],
+        "type": "object",
+        "properties": {
+          "address": {
+            "pattern": "[a-zA-Z]",
+            "type": "string"
+          },
+          "city": {
+            "pattern": "[a-zA-Z]",
+            "type": "string"
+          },
+          "pinCode": {
+            "pattern": "[0-9]{6}",
+            "type": "string"
+          }
+        }
+      },
+      "UserDetailsRequestDto": {
+        "required": [
+          "dateOfBirth",
+          "email",
+          "lastName",
+          "phoneNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDetailsRequestDto"
+          },
+          "phoneNumber": {
+            "pattern": "[0-9]{10}",
+            "type": "string"
+          }
+        }
+      },
+      "AccountDetailsResponseDto": {
+        "type": "object",
+        "properties": {
+          "accountNumber": {
+            "type": "string"
+          },
+          "bankBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "accountStatus": {
+            "type": "string"
+          },
+          "transactionDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionDetailsResponseDto"
+            }
+          }
+        }
+      },
+      "AddressDetailsResponseDto": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "pinCode": {
+            "type": "string"
+          }
+        }
+      },
+      "ApiResponseUserDetailsResponseDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserDetailsResponseDto"
+          },
+          "errors": {
+            "$ref": "#/components/schemas/ErrorDetails"
+          }
+        }
+      },
+      "UserDetailsResponseDto": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDetailsResponseDto"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "accountDetails": {
+            "$ref": "#/components/schemas/AccountDetailsResponseDto"
+          }
+        }
+      },
+      "ApiResponseListAccountDetailsResponseDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountDetailsResponseDto"
+            }
+          },
+          "errors": {
+            "$ref": "#/components/schemas/ErrorDetails"
+          }
+        }
+      },
+      "ApiResponseAccountDetailsResponseDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AccountDetailsResponseDto"
+          },
+          "errors": {
+            "$ref": "#/components/schemas/ErrorDetails"
+          }
+        }
+      }
+    }
+  }
+}

@@ -14,4 +14,5 @@ public class ErrorCodeConfiguration {
     private String invalidAccountNumberErrorCode;
     private String lessBankBalanceErrorCode;
     private String accountNotActivatedErrorCode;
+    private String missingPathVariableErrorCode;
 }

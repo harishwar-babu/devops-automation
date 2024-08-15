@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-public class AccountDetailsController {
+public class AccountDetailsController{
     private final AccountDetailsService accountDetailsService;
 
     @PutMapping("/activate/{accountNumber}")

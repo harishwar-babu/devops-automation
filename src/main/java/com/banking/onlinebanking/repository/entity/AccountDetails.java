@@ -1,7 +1,6 @@
 package com.banking.onlinebanking.repository.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,6 @@ public class AccountDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY,generator = "accountNumber")
     @GenericGenerator(name = "accountNumber",type = AccountNumberGenerator.class)
     private String accountNumber;
-    @Min(value = 0,message = "customer id required")
     private int customerId;
     private double bankBalance;
     @ManyToOne
