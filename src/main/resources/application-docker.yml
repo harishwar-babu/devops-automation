@@ -6,7 +6,7 @@ spring:
   application:
     name: online-banking
   datasource:
-    url: jdbc:mysql://mysqldb:3306/online-banking?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://4aa268a6a83c:3306/online-banking?allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: root
   jpa:
@@ -15,7 +15,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQLDialect
 springdoc:
   swagger-ui:
     path: /index.html
