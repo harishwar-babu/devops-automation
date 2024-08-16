@@ -1,0 +1,5 @@
+1.Do pull the mysql-db image for running the mysql database in your machine
+docker pull mysql:8.0-debian
+
+2. Create a database called online-banking with userName And Password
+docker run -it --name mysqldb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=online-banking -d mysql:8.0-debian
