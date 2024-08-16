@@ -1,0 +1,21 @@
+pipeline{
+    agent any
+    tools {
+        maven "Maven"
+    }
+    stages{
+        stage("Build Maven Project"){
+            steps{
+                checkout scmGit(branches: [[name: 'origin/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/harishwar-babu/devops-automation.git']])
+                bat 'mvn clean install -Pdev'
+            }
+        }
+        stage("Build Docker Image"){
+            steps{
+                script{
+                    bat 'docker build -t online-banking/online-banking .'
+                }
+            }
+        }
+    }
+}
