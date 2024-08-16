@@ -86,18 +86,4 @@
 		</plugins>
 		<finalName>online-banking</finalName>
 	</build>
-	<profiles>
-		<profile>
-			<id>dev</id>
-			<properties>
-				<spring.profiles.active>dev</spring.profiles.active>
-			</properties>
-		</profile>
-		<profile>
-			<id>docker</id>
-			<properties>
-				<spring.profiles.active>docker</spring.profiles.active>
-			</properties>
-		</profile>
-	</profiles>
 </project>
