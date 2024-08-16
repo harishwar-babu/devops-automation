@@ -6,7 +6,7 @@ spring:
   application:
     name: online-banking
   datasource:
-    url: jdbc:mysql://4aa268a6a83c:3306/online-banking?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://172.17.0.2:3306/online-banking?allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: root
   jpa:
